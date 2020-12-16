@@ -3,15 +3,16 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 
+import Home from './Home';
 import App from './App';
-import FormYupProfessor from './FormYupProfessor';
-import FormYupAluno from './FormYupAluno';
-import FormYupLogin from './FormYupLogin';
-import FormYupProjeto from './FormYupProjeto';
+import FormYupProfessor from './forms/FormYupProfessor';
+import FormYupAluno from './forms/FormYupAluno';
+import FormYupLogin from './forms/FormYupLogin';
+import FormYupProjeto from './forms/FormYupProjeto';
 
 ReactDOM.render(
   <React.StrictMode>
-    <FormYupProfessor />
+    <FormYupLogin />
   </React.StrictMode>,
   document.getElementById('root')
 );
