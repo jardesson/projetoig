@@ -1,6 +1,7 @@
 import React  from 'react';
 import { Formik, ErrorMessage, Field } from 'formik';
 import * as Yup from 'yup';
+import logo from '../imagens/logo.png';
 
 const LoginSchema = Yup.object().shape({
   name: Yup.string().required('Required'),
@@ -31,8 +32,13 @@ const FormYupProjeto = () => {
           isSubmitting,
         }) => (
         <form onSubmit={handleSubmit}>
+          <div id="imageContainer" className="image">
+              <img id="image" src={logo} />
+          </div>
+          <br></br>
+
           <label>
-            Nome*:
+            Nome*:<br></br>
             <Field type="text" name="name"
                    onBlur={handleBlur}
                    onChange={handleChange}/>
@@ -40,7 +46,7 @@ const FormYupProjeto = () => {
           <ErrorMessage name="name" className="error" component="span"/>
 
           <label>
-            Descrição*:
+            Descrição*:<br></br>
             <Field type="text" name="descricao"
                    onBlur={handleBlur}
                    onChange={handleChange}/>

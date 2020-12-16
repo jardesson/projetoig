@@ -3,12 +3,13 @@ import './FormYupProfessor.css';
 import React  from 'react';
 import { Formik, ErrorMessage, Field } from 'formik';
 import * as Yup from 'yup';
+import logo from '../imagens/logo.png';
 
 const regexMat = /\d{9}/g;
 
 const LoginSchema = Yup.object().shape({
   name: Yup.string().required('Required'),
-  matricula: Yup.string().matches(regexMat, "Matrícula inválida"),
+  matricula: Yup.string().matches(regexMat, "Matrícula inválida").length(9, "Matrícula deve ter 9 dígitos").required('Required'),
   formacao: Yup.string().required('Required'),
   area: Yup.string().required('Required')
 });
@@ -37,8 +38,13 @@ const FormYupProfessor = () => {
           isSubmitting,
         }) => (
         <form onSubmit={handleSubmit}>
+          <div id="imageContainer" className="image">
+              <img id="image" src={logo} />
+          </div>
+          <br></br>
+
           <label>
-            Nome*:
+            Nome*:<br></br>
             <Field type="text" name="name"
                    onBlur={handleBlur}
                    onChange={handleChange}/>
@@ -46,7 +52,7 @@ const FormYupProfessor = () => {
           <ErrorMessage name="name" className="error" component="span"/>
 
           <label>
-            Matrícula*:
+            Matrícula*:<br></br>
             <Field type="text" name="matricula"
                    onBlur={handleBlur}
                    onChange={handleChange}/>
@@ -54,7 +60,7 @@ const FormYupProfessor = () => {
           <ErrorMessage name="matricula" className="error" component="span" />
 
           <label>
-            Formação*:
+            Formação*:<br></br>
             <Field type="text" name="formacao"
                    onBlur={handleBlur}
                    onChange={handleChange}/>
@@ -62,7 +68,7 @@ const FormYupProfessor = () => {
           <ErrorMessage name="formacao" className="error" component="span"/>
 
           <label>
-            Área de atuação*:
+            Área de atuação*:<br></br>
             <Field type="text" name="area"
                    onBlur={handleBlur}
                    onChange={handleChange}/>

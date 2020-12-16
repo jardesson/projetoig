@@ -1,11 +1,15 @@
+import logo from '../imagens/logo.png';
+import imgAlunos from '../imagens/alunos.png';
+import imgProfessores from '../imagens/professores.png';
 import React from 'react';
 import { Formik, ErrorMessage, Field } from 'formik';
 import * as Yup from 'yup';
 
+
 const LoginSchema = Yup.object().shape({
-  login: Yup.string().required('Required'),
-  senha: Yup.string().required('Required').min(6, 'Senha muito curta').max(16, 'Senha muito longa'),
-  senhaConfirmation: Yup.string().oneOf([Yup.ref('senha'), null], 'As senhas devem ser iguais')
+  email: Yup.string().required('Required'),
+  senha: Yup.string().required('Required'),
+  
 });
 
 const FormYupLogin = () => {
@@ -22,7 +26,7 @@ const FormYupLogin = () => {
     <Formik
       validationSchema={LoginSchema}
       initialStatus={{ isValidating: false }}
-      initialValues={{ login: '', senha: '', senhaConfirmation: '' }}
+      initialValues={{ email: '', senha: '' }}
       onSubmit={handleSubmitting}
     >
       {({
@@ -31,40 +35,35 @@ const FormYupLogin = () => {
         handleSubmit,
         isSubmitting,
       }) => (
-        <form onSubmit={handleSubmit}>
+        <form  onSubmit={handleSubmit}>
+          <div id="imageContainer" className="image">
+              <img id="image" src={logo} />
+          </div>
+          <br></br>
+          
           <label>
-            Email*:
+            Email*:<br></br>
             <Field type="text" name="email"
               onBlur={handleBlur}
               onChange={handleChange} />
           </label><br></br>
-          <ErrorMessage name="name" className="error" component="span" />
+          <ErrorMessage name="email" className="error" component="span" />
 
           <label>
-            Senha*:
+            Senha*:<br></br>
             <Field type="password" name="senha"
               onBlur={handleBlur}
               onChange={handleChange} />
           </label><br></br>
           <ErrorMessage name="senha" className="error" component="span" />
-
-          <label>
-
-            Confirme a senha*:
-            <Field type="password" name="senhaConfirmation"
-              onBlur={handleBlur}
-              onChange={handleChange} />
-          </label><br></br>
-          <ErrorMessage name="senhaConfirmation" className="error" component="span" />
           <br></br>
+          
 
           <input type="submit" value="Login" disabled={isSubmitting} />
+          
 
           <div className="App">
-            <div id="imageContainer" className="image">
-              <img id="image" src={logo} />
-            </div>
-
+            
             <div id="container">
               <a className="tile" title="CadastrarAluno" href="https://google.com/">
 
