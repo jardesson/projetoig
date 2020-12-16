@@ -1,22 +1,20 @@
-import React  from 'react';
+import React from 'react';
 import { Formik, ErrorMessage, Field } from 'formik';
 import * as Yup from 'yup';
+import logo from '../imagens/logo.png';
+import Home from '../Home';
 
-const regexCPF = /\d{3}[.]\d{3}[.]\d{3}[-]\d{2}/g;
 const regexMat = /\d{9}/g;
-const regexCEP = /\d{5}[-]\d{3}/g;
+const regexEmail = /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i
 
 const LoginSchema = Yup.object().shape({
   name: Yup.string().required('Required'),
-  matricula: Yup.string().matches(regexMat, "Matrícula inválida"),
-  cpf: Yup.string().matches(regexCPF, "CPF inválido"),
-  estado: Yup.string().required('Required'),
-  idade: Yup.number().required('Required').moreThan(16,'Número inválido'),
+  matricula: Yup.string().matches(regexMat, "Matrícula inválida").length(9, "Matrícula deve ter 9 dígitos").required('Required'),
   curso: Yup.string().required('Required'),
-  endereço: Yup.string().required('Required'),
-  bairro: Yup.string().required('Required'),
-  cidade: Yup.string().required('Required'),
-  cep: Yup.string().matches(regexCEP, "CEP inválido")
+  email: Yup.string().email(regexEmail, "Email inválido").required('Required'),
+  senha: Yup.string().required('Required').min(6, 'A Senha deve conter no mínimo 6 caracteres').max(16, 'A Senha deve conter no máximo 16 caracteres'),
+  senhaConfirmation: Yup.string().oneOf([Yup.ref('senha'), null], 'As senhas devem ser iguais').required('Required')
+
 });
 
 const FormYupAluno = () => {
@@ -32,152 +30,97 @@ const FormYupAluno = () => {
   return (
     <Formik
       validationSchema={LoginSchema}
-      initialStatus={{isValidating: false}}
-      initialValues={{ name: '', idade: '', cpf: '',  matricula: '', curso: '', endereço: '', numero: '', complemento: '', bairro: '', cidade: '', estado: '', cep: '' }}
+      initialStatus={{ isValidating: false }}
+      initialValues={{ name: '', matricula: '', curso: '', email: '', senha: '', senhaConfirmation: '', papel: '' }}
       onSubmit={handleSubmitting}
     >
       {({
-          handleChange,
-          handleBlur,
-          handleSubmit,
-          isSubmitting,
-        }) => (
+        handleChange,
+        handleBlur,
+        handleSubmit,
+        isSubmitting,
+      }) => (
         <form onSubmit={handleSubmit}>
-          <label>
-            Name*:
-            <Field type="text" name="name"
-                   onBlur={handleBlur}
-                   onChange={handleChange}/>
-          </label><br></br>
-          <ErrorMessage name="name" className="error" component="span"/>
-    
-          <label>
-            Idade*:
-            <Field type="Number" name="idade"
-                   onBlur={handleBlur}
-                   onChange={handleChange}/>
-          </label><br></br>
-          <ErrorMessage name="idade" className="error" component="span"/>
-    
-          <label>
-            CPF*:
-            <Field type="text" name="cpf"
-                   onBlur={handleBlur}
-                   onChange={handleChange}/>
-          </label><br></br>
-          <ErrorMessage name="cpf" className="error" component="span" />
-    
-          <label>
-            Matrícula*:
-            <Field type="text" name="matricula"
-                   onBlur={handleBlur}
-                   onChange={handleChange}/>
-          </label><br></br>
-          <ErrorMessage name="matricula" className="error" component="span" />
-
-          <label>
-            Curso*:
-            <Field type="text" name="curso"
-                   onBlur={handleBlur}
-                   onChange={handleChange}/>
-          </label><br></br>
-          <ErrorMessage name="curso" className="error" component="span"/>
-    
-          <label>
-            Endereço*:
-            <Field type="text" name="endereço"
-                   onBlur={handleBlur}
-                   onChange={handleChange}/>
-          </label><br></br>
-          <ErrorMessage name="endereço" className="error" component="span"/>
-    
-          <label>
-            Número:
-            <Field type="number" name="numero"
-                   onBlur={handleBlur}
-                   onChange={handleChange}/>
-          </label><br></br>
-          <ErrorMessage name="numero" className="error" component="span"/>
-    
-          <label>
-            Complemento:
-            <Field type="text" name="complemento"
-                   onBlur={handleBlur}
-                   onChange={handleChange}/>
-          </label><br></br>
-          <ErrorMessage name="complemento" className="error" component="span"/>
-    
-          <label>
-            Bairro*:
-            <Field type="text" name="bairro"
-                   onBlur={handleBlur}
-                   onChange={handleChange}/>
-          </label><br></br>
-          <ErrorMessage name="bairro" className="error" component="span"/>
-    
-          <label>
-            Cidade*:
-            <Field type="text" name="cidade"
-                   onBlur={handleBlur}
-                   onChange={handleChange}/>
-          </label><br></br>
-          <ErrorMessage name="cidade" className="error" component="span"/>
-
-          <label>
-            Selecione um Estado:
-            <select
-              name="estado"
-              onChange={handleChange}
-              onBlur={handleBlur}
-            >
-              <option value="" label="  " />
-              <option value='Acre'>AC</option>
-              <option value='Alagoas'>AL</option>
-              <option value='Amapá'>AP</option>
-              <option value='Amazonas'>AM</option>
-              <option value='Bahia'>BA</option>
-              <option value='Ceará'>CE</option>
-              <option value='Distrito Federal'>DF</option>
-              <option value='Espirito Santo'>ES</option>
-              <option value='Goiás'>GO</option>
-              <option value='Maranhão'>MA</option>
-              <option value='Mato Grosso do Sul'>MS</option>
-              <option value='Mato Grosso'>MT</option>
-              <option value='Minas Gerais'>MG</option>
-              <option value='Pará'>PA</option>
-              <option value='Paraíba'>PB</option>
-              <option value='Paraná'>PR</option>
-              <option value='Pernambuco'>PE</option>
-              <option value='Piauí'>PI</option>
-              <option value='Rio de Janeiro'>RJ</option>
-              <option value='Rio Grande do Norte'>RN</option>
-              <option value='Rio Grande do Sul'>RS</option>
-              <option value='Rondônia'>RO</option>
-              <option value='Roraima'>RR</option>
-              <option value='Santa Catarina'>SC</option>
-              <option value='São Paulo'>SP</option>
-              <option value='Sergipe'>SE</option>
-              <option value='Tocantins'>TO</option>
-            </select>
-          </label>
-
-          <ErrorMessage name="estado" className="error" component="span" />
-
+          <div id="imageContainer" className="image">
+            <img id="image" src={logo} />
+          </div>
           <br></br>
-    
+
           <label>
-            CEP*:
-            <Field type="text" name="cep"
-                   onBlur={handleBlur}
-                   onChange={handleChange}/>
+            Name*:<br></br>
+            <Field type="text" name="name"
+              onBlur={handleBlur}
+              onChange={handleChange} />
           </label>
+          <ErrorMessage name="name" className="error" component="span" />
+          <br></br>
+
+          <label>
+            Matrícula*:<br></br>
+            <Field type="text" name="matricula"
+              onBlur={handleBlur}
+              onChange={handleChange} />
+          </label>
+          <ErrorMessage name="matricula" className="error" component="span" />
+          <br></br>
+
+          <label>
+            Curso*:<br></br>
+            <Field type="text" name="curso"
+              onBlur={handleBlur}
+              onChange={handleChange} />
+          </label>
+          <ErrorMessage name="curso" className="error" component="span" />
+          <br></br>
+
+          <label>
+            Email*:<br></br>
+            <Field type="text" name="email"
+              onBlur={handleBlur}
+              onChange={handleChange} />
+          </label>
+          <ErrorMessage name="email" className="error" component="span" />
+          <br></br>
+
+          <label>
+            Senha*:<br></br>
+            <Field type="password" name="senha"
+              onBlur={handleBlur}
+              onChange={handleChange} />
+          </label>
+          <ErrorMessage name="senha" className="error" component="span" />
+          <br></br>
+
+          <label>
+            Confirme a senha*:<br></br>
+            <Field type="password" name="senhaConfirmation"
+              onBlur={handleBlur}
+              onChange={handleChange} />
+          </label>
+          <ErrorMessage name="senhaConfirmation" className="error" component="span" />
+          <br></br>
+
+          <label>
+            Papel:<br></br>
+            <Field type="text" name="papel"
+              onBlur={handleBlur}
+              onChange={handleChange} />
+          </label>
+          <ErrorMessage name="papel" className="error" component="span" />
+          <br></br>
+
           <br></br><br></br>
-          <ErrorMessage name="cep" className="error" component="span" />
-          
-          <input type="submit" value="Cadastrar" disabled={isSubmitting}/>
+
+
+          <input type="submit" value="Cadastrar" disabled={isSubmitting} />
+          <button onClick={Home}>Cancelar</button>
         </form>
+
+
       )}
     </Formik>
+
+
   )
 };
 
