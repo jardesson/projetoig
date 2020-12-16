@@ -1,14 +1,19 @@
+import './FormYupProfessor.css';
+
 import React  from 'react';
 import { Formik, ErrorMessage, Field } from 'formik';
 import * as Yup from 'yup';
 
+const regexMat = /\d{9}/g;
+
 const LoginSchema = Yup.object().shape({
-  login: Yup.string().required('Required'),
-  senha: Yup.string().required('Required').min(6,'Senha muito curta').max(16, 'Senha muito longa'),
-  senhaConfirmation: Yup.string().oneOf([Yup.ref('senha'), null], 'As senhas devem ser iguais')
+  name: Yup.string().required('Required'),
+  matricula: Yup.string().matches(regexMat, "Matrícula inválida"),
+  formacao: Yup.string().required('Required'),
+  area: Yup.string().required('Required')
 });
 
-const FormYupLogin = () => {
+const FormYupProfessor = () => {
   const handleSubmitting = (values, { setSubmitting, setStatus }) => {
     setStatus({ isValidating: true });
     setTimeout(() => {
@@ -22,7 +27,7 @@ const FormYupLogin = () => {
     <Formik
       validationSchema={LoginSchema}
       initialStatus={{isValidating: false}}
-      initialValues={{ login: '', senha: '', senhaConfirmation:''}}
+      initialValues={{ name: '',  matricula: '', formacao: '', area: ''}}
       onSubmit={handleSubmitting}
     >
       {({
@@ -33,36 +38,44 @@ const FormYupLogin = () => {
         }) => (
         <form onSubmit={handleSubmit}>
           <label>
-            Email*:
-            <Field type="text" name="email"
+            Nome*:
+            <Field type="text" name="name"
                    onBlur={handleBlur}
                    onChange={handleChange}/>
           </label><br></br>
           <ErrorMessage name="name" className="error" component="span"/>
 
           <label>
-            Senha*:
-            <Field type="password" name="senha"
+            Matrícula*:
+            <Field type="text" name="matricula"
                    onBlur={handleBlur}
                    onChange={handleChange}/>
           </label><br></br>
-          <ErrorMessage name="senha" className="error" component="span"/>
-          
-          <label>
+          <ErrorMessage name="matricula" className="error" component="span" />
 
-            Confirme a senha*:
-            <Field type="password" name="senhaConfirmation"
+          <label>
+            Formação*:
+            <Field type="text" name="formacao"
                    onBlur={handleBlur}
                    onChange={handleChange}/>
           </label><br></br>
-          <ErrorMessage name="senhaConfirmation" className="error" component="span"/>
+          <ErrorMessage name="formacao" className="error" component="span"/>
+
+          <label>
+            Área de atuação*:
+            <Field type="text" name="area"
+                   onBlur={handleBlur}
+                   onChange={handleChange}/>
+          </label><br></br>
+          <ErrorMessage name="area" className="error" component="span"/>
+
           <br></br> 
 
-          <input type="submit" value="Login" disabled={isSubmitting}/>
+          <input type="submit" value="Cadastrar" disabled={isSubmitting}/>
         </form>
       )}
     </Formik>
   )
 };
 
-export default FormYupLogin;
+export default FormYupProfessor;
