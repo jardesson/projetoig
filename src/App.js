@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Sobre from './Sobre';
+import Sobre from './views/Sobre';
 import Home from './Home';
 
 import Aluno from './views/Aluno';

@@ -5,6 +5,7 @@ import imgAlunos from './imagens/alunos.png';
 import imgProfessores from './imagens/professores.png';
 import imgProjetos from './imagens/projetos.png';
 import imgSobre from './imagens/sobre.png';
+import imgVoltar from './imagens/voltar.png';
 
 const Home = () => {
     return(
@@ -34,6 +35,12 @@ const Home = () => {
 
               <div className="tile-icon"><img alt="sobre" src={imgSobre}/></div>
               <div className="tile-title title-ltr">Sobre</div>
+          </a>
+
+          <a className="tile"  title="Sair" href="/login">
+
+              <div className="tile-icon"><img alt="sair" src={imgVoltar}/></div>
+              <div className="tile-title title-ltr">Sair</div>
           </a>
       </div>
     </div>

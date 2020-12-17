@@ -36,7 +36,7 @@ body {
     overflow: hidden;
     transition: opacity 300ms ease-in-out;
     width: calc(var(--content-width) + 12px);
-    --column-count: 4;
+    --column-count: 5;
     --row-count: 1;
 }
 
