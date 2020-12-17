@@ -1,4 +1,6 @@
-import React  from 'react';
+import './Form.css';
+
+import React from 'react';
 import { Formik, ErrorMessage, Field } from 'formik';
 import * as Yup from 'yup';
 import logo from '../imagens/logo.png';
@@ -21,41 +23,43 @@ const FormYupProjeto = () => {
   return (
     <Formik
       validationSchema={LoginSchema}
-      initialStatus={{isValidating: false}}
-      initialValues={{ name: '',descricao: ''}}
+      initialStatus={{ isValidating: false }}
+      initialValues={{ name: '', descricao: '' }}
       onSubmit={handleSubmitting}
     >
       {({
-          handleChange,
-          handleBlur,
-          handleSubmit,
-          isSubmitting,
-        }) => (
+        handleChange,
+        handleBlur,
+        handleSubmit,
+        isSubmitting,
+      }) => (
         <form onSubmit={handleSubmit}>
           <div id="imageContainer" className="image">
-              <img id="image" src={logo} />
+            <img id="image" src={logo} />
           </div>
           <br></br>
+          <div id="formulario">
+            <h1>Cadastro de Projetos</h1>
+            <label>
+              Nome*:<br></br>
+              <Field type="text" name="name"
+                onBlur={handleBlur}
+                onChange={handleChange} />
+            </label><br></br>
+            <ErrorMessage name="name" className="error" component="span" />
 
-          <label>
-            Nome*:<br></br>
-            <Field type="text" name="name"
-                   onBlur={handleBlur}
-                   onChange={handleChange}/>
-          </label><br></br>
-          <ErrorMessage name="name" className="error" component="span"/>
+            <label>
+              Descrição*:<br></br>
+              <Field type="text" name="descricao"
+                onBlur={handleBlur}
+                onChange={handleChange} />
+            </label><br></br>
+            <ErrorMessage name="descricao" className="error" component="span" />
 
-          <label>
-            Descrição*:<br></br>
-            <Field type="text" name="descricao"
-                   onBlur={handleBlur}
-                   onChange={handleChange}/>
-          </label><br></br>
-          <ErrorMessage name="descricao" className="error" component="span"/>
+            <br></br>
 
-          <br></br> 
-
-          <input type="submit" value="Cadastrar" disabled={isSubmitting}/>
+            <input type="submit" value="Cadastrar" disabled={isSubmitting} />
+          </div>
         </form>
       )}
     </Formik>

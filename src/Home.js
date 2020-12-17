@@ -16,7 +16,7 @@ import FormYupLogin from './forms/FormYupLogin';
 const Home = () => {
     return(
     <div className="Home">
-      <div id="imageContainer" className="image">
+      <div id="imageContainer" className="imagem">
         <img id="image" src={logo}/>
       </div>
 

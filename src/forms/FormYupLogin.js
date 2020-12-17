@@ -1,3 +1,5 @@
+import './Form.css';
+
 import logo from '../imagens/logo.png';
 import imgAlunos from '../imagens/alunos.png';
 import imgProfessores from '../imagens/professores.png';

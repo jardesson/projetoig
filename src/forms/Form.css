@@ -1,0 +1,43 @@
+body {
+    background: #545454;
+    margin: 0;
+}
+
+#backgroundImage {
+    border: none;
+    height: 100%;
+    pointer-events: none;
+    position: fixed;
+    top: 0;
+    visibility: hidden;
+    width: 100%;
+}
+
+.image {
+    background: #545454;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: left;
+    position: relative;
+    top: 150px;
+    left: 300px;
+}
+
+#formulario{
+    font-style:bold;
+    font-family: “Segoe UI”,”Arial”,”Times New Roman”;
+    border-color: rgb(0, 0, 0);
+    float: right;
+    width:50%;
+    position: relative;
+    top: -400px;
+    left: 250px;
+    font-size: 20px;
+
+}
+h1{
+    color: black;
+    font-size: 30px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}

@@ -1,3 +1,5 @@
+import './Form.css';
+
 import React from 'react';
 import { Formik, ErrorMessage, Field } from 'formik';
 import * as Yup from 'yup';
@@ -46,74 +48,70 @@ const FormYupAluno = () => {
           </div>
           <br></br>
 
-          <label>
-            Name*:<br></br>
-            <Field type="text" name="name"
-              onBlur={handleBlur}
-              onChange={handleChange} />
-          </label>
-          <ErrorMessage name="name" className="error" component="span" />
-          <br></br>
+          <div id="formulario">
+            <h1>Cadastro de Alunos</h1>
+            <label>
+              Name*:<br></br>
+              <Field type="text" name="name"
+                onBlur={handleBlur}
+                onChange={handleChange} />
+            </label>
+            <ErrorMessage name="name" className="error" component="span" />
+            <br></br>
 
-          <label>
-            Matrícula*:<br></br>
-            <Field type="text" name="matricula"
-              onBlur={handleBlur}
-              onChange={handleChange} />
-          </label>
-          <ErrorMessage name="matricula" className="error" component="span" />
-          <br></br>
+            <label>
+              Matrícula*:<br></br>
+              <Field type="text" name="matricula"
+                onBlur={handleBlur}
+                onChange={handleChange} />
+            </label>
+            <ErrorMessage name="matricula" className="error" component="span" />
+            <br></br>
 
-          <label>
-            Curso*:<br></br>
-            <Field type="text" name="curso"
-              onBlur={handleBlur}
-              onChange={handleChange} />
-          </label>
-          <ErrorMessage name="curso" className="error" component="span" />
-          <br></br>
+            <label>
+              Curso*:<br></br>
+              <Field type="text" name="curso"
+                onBlur={handleBlur}
+                onChange={handleChange} />
+            </label>
+            <ErrorMessage name="curso" className="error" component="span" />
+            <br></br>
 
-          <label>
-            Email*:<br></br>
-            <Field type="text" name="email"
-              onBlur={handleBlur}
-              onChange={handleChange} />
-          </label>
-          <ErrorMessage name="email" className="error" component="span" />
-          <br></br>
+            <label>
+              Email*:<br></br>
+              <Field type="text" name="email"
+                onBlur={handleBlur}
+                onChange={handleChange} />
+            </label>
+            <ErrorMessage name="email" className="error" component="span" />
+            <br></br>
 
-          <label>
-            Senha*:<br></br>
-            <Field type="password" name="senha"
-              onBlur={handleBlur}
-              onChange={handleChange} />
-          </label>
-          <ErrorMessage name="senha" className="error" component="span" />
-          <br></br>
+            <label>
+              Senha*:<br></br>
+              <Field type="password" name="senha"
+                onBlur={handleBlur}
+                onChange={handleChange} />
+            </label>
+            <ErrorMessage name="senha" className="error" component="span" />
+            <br></br>
 
-          <label>
-            Confirme a senha*:<br></br>
-            <Field type="password" name="senhaConfirmation"
-              onBlur={handleBlur}
-              onChange={handleChange} />
-          </label>
-          <ErrorMessage name="senhaConfirmation" className="error" component="span" />
-          <br></br>
+            <label>
+              Confirme a senha*:<br></br>
+              <Field type="password" name="senhaConfirmation"
+                onBlur={handleBlur}
+                onChange={handleChange} />
+            </label>
+            <ErrorMessage name="senhaConfirmation" className="error" component="span" />
+            <br></br>
 
-          <label>
-            Papel:<br></br>
-            <Field type="text" name="papel"
-              onBlur={handleBlur}
-              onChange={handleChange} />
-          </label>
-          <ErrorMessage name="papel" className="error" component="span" />
-          <br></br>
+          
 
-          <br></br><br></br>
+            <br></br><br></br>
 
 
-          <input type="submit" value="Cadastrar" disabled={isSubmitting} />
-          <button onClick={Home}>Cancelar</button>
+            <input type="submit" value="Cadastrar" disabled={isSubmitting} />
+            <button onClick={Home}>Cancelar</button>
+          </div>
         </form>
 
 
