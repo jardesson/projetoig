@@ -62,6 +62,7 @@ const FormYupLogin = () => {
           <br></br>
 
           <div id="formulario">
+          <h1>Entre com sua conta</h1>
             <label>
               Email*:<br></br>
               <Field type="text" name="email"
@@ -69,7 +70,7 @@ const FormYupLogin = () => {
                 onChange={handleChange} />
             </label>
             <ErrorMessage name="email" className="error" component="span" />
-            <br></br>
+            <br></br><br></br>
 
             <label>
               Senha*:<br></br>
@@ -78,7 +79,7 @@ const FormYupLogin = () => {
                 onChange={handleChange} />
             </label>
             <ErrorMessage name="password" className="error" component="span" />
-            <br></br>
+            <br></br><br></br>
             <input type="submit" value="Login" disabled={isSubmitting} />
           </div>
 

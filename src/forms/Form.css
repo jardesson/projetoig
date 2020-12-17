@@ -24,6 +24,15 @@ body {
     left: 300px;
 }
 
+.App{
+
+    position: relative;
+    top: -50px;
+    left: 830px;
+
+
+}
+
 #formulario{
     font-style:bold;
     font-family: “Segoe UI”,”Arial”,”Times New Roman”;
@@ -31,7 +40,7 @@ body {
     float: right;
     width:50%;
     position: relative;
-    top: -400px;
+    top: -350px;
     left: 250px;
     font-size: 20px;
 
@@ -39,7 +48,7 @@ body {
 h1{
     color: black;
     font-size: 30px;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-family: sans-serif, Haettenschweiler, 'Open Sans', sans-serif;
 }
 
 .tile {
