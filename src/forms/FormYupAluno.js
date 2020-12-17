@@ -6,18 +6,21 @@ import React from 'react';
 import { Formik, ErrorMessage, Field } from 'formik';
 import * as Yup from 'yup';
 import logo from '../imagens/logo.png';
-import Home from '../Home';
+
+import axios from 'axios';
+
+const BASE_URL = 'https://api-projeto-web.herokuapp.com/alunos';
 
 const regexMat = /\d{9}/g;
 const regexEmail = /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i
 
 const LoginSchema = Yup.object().shape({
-  name: Yup.string().required('Required'),
+  nome: Yup.string().required('Required'),
   matricula: Yup.string().matches(regexMat, "Matrícula inválida").length(9, "Matrícula deve ter 9 dígitos").required('Required'),
   curso: Yup.string().required('Required'),
   email: Yup.string().email(regexEmail, "Email inválido").required('Required'),
-  senha: Yup.string().required('Required').min(6, 'A Senha deve conter no mínimo 6 caracteres').max(16, 'A Senha deve conter no máximo 16 caracteres'),
-  senhaConfirmation: Yup.string().oneOf([Yup.ref('senha'), null], 'As senhas devem ser iguais').required('Required')
+  password: Yup.string().required('Required').min(6, 'A Senha deve conter no mínimo 6 caracteres').max(16, 'A Senha deve conter no máximo 16 caracteres'),
+  senhaConfirmation: Yup.string().oneOf([Yup.ref('password'), null], 'As senhas devem ser iguais').required('Required')
 
 });
 
@@ -26,6 +29,21 @@ const FormYupAluno = () => {
     setStatus({ isValidating: true });
     setTimeout(() => {
       console.info(JSON.stringify(values, null, 2));
+
+      axios({
+        url: BASE_URL, 
+        data: JSON.stringify(values),
+        method: 'post',
+        headers: { 'Content-Type': 'application/json' }
+      })
+      .then(res => {
+        console.log("Status: "+res.status+" - Message: "+res.message);
+        alert("Cadastrado com sucesso!");
+        window.location.href="/home";
+      }).catch(error => {
+        console.log("Status: "+error.status+" - Message: "+error.message);
+        alert("Erro ao cadastrar!");
+      });
       setSubmitting(false);
       setStatus({ isValidating: false });
     }, 400);
@@ -35,7 +53,7 @@ const FormYupAluno = () => {
     <Formik
       validationSchema={LoginSchema}
       initialStatus={{ isValidating: false }}
-      initialValues={{ name: '', matricula: '', curso: '', email: '', senha: '', senhaConfirmation: '', papel: '' }}
+      initialValues={{ nome: '', matricula: '', curso: '', email: '', password: '', senhaConfirmation: '', papel: '' }}
       onSubmit={handleSubmitting}
     >
       {({
@@ -46,19 +64,19 @@ const FormYupAluno = () => {
       }) => (
         <form onSubmit={handleSubmit}>
           <div id="imageContainer" className="image">
-            <img id="image" src={logo} />
+            <img id="image" alt="logo" src={logo} />
           </div>
           <br></br>
 
           <div id="formulario">
             <h1>Cadastro de Alunos</h1>
             <label>
-              Name*:<br></br>
-              <Field type="text" name="name"
+              Nome*:<br></br>
+              <Field type="text" name="nome"
                 onBlur={handleBlur}
                 onChange={handleChange} />
             </label>
-            <ErrorMessage name="name" className="error" component="span" />
+            <ErrorMessage name="nome" className="error" component="span" />
             <br></br>
 
             <label>
@@ -90,11 +108,11 @@ const FormYupAluno = () => {
 
             <label>
               Senha*:<br></br>
-              <Field type="password" name="senha"
+              <Field type="password" name="password"
                 onBlur={handleBlur}
                 onChange={handleChange} />
             </label>
-            <ErrorMessage name="senha" className="error" component="span" />
+            <ErrorMessage name="password" className="error" component="span" />
             <br></br>
 
             <label>
@@ -108,22 +126,20 @@ const FormYupAluno = () => {
 
             <br></br><br></br>
 
-            <Link to="/home">
-              <input type="submit" value="Cadastrar" disabled={isSubmitting} />
-            </Link>
+            <input type="submit" value="Cadastrar" disabled={isSubmitting} />
             
-            <Link to="/init">
+            <Link to="/login">
               <button>Cancelar</button>
             </Link>
           </div>
         </form>
-
-
       )}
     </Formik>
-
-
   )
 };
 
 export default FormYupAluno;
+
+/*<Link to="/home">
+  <input type="submit" value="Cadastrar" disabled={isSubmitting} />
+</Link>*/

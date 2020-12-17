@@ -37,7 +37,7 @@ const FormYupProjeto = () => {
       }) => (
         <form onSubmit={handleSubmit}>
           <div id="imageContainer" className="image">
-            <img id="image" src={logo} />
+            <img id="image" alt="logo" src={logo} />
           </div>
           <br></br>
           <div id="formulario">
