@@ -4,6 +4,7 @@ import logo from '../imagens/logo.png';
 import imgUpdate from '../imagens/update.png';
 import imgRead from '../imagens/read.png';
 import imgDelete from '../imagens/delete.png';
+import imgVoltar from '../imagens/voltar.png';
 
 const Aluno = () => {
     return(
@@ -31,6 +32,12 @@ const Aluno = () => {
 
               <div className="tile-icon"><img alt="delete" src={imgDelete}/></div>
               <div className="tile-title title-ltr">Excluir</div>
+          </a>
+
+          <a className="tile"  title="Voltar" href="/home">
+
+              <div className="tile-icon"><img alt="voltar" src={imgVoltar}/></div>
+              <div className="tile-title title-ltr">Voltar</div>
           </a>
       </div>
     </div>
