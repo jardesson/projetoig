@@ -21,22 +21,22 @@ const Home = () => {
       </div>
 
       <div id="container">
-          <a className="tile"  title="Alunos" href="/alunos">
+          <a className="tile"  title="Alunos" href="/aluno">
 
               <div className="tile-icon"><img src={imgAlunos}/></div>
-              <div className="tile-title title-ltr"><Link to="/alunos">Alunos</Link></div>
+              <div className="tile-title title-ltr"><Link to="/aluno">Alunos</Link></div>
           </a>
 
-          <a className="tile"  title="Professores" href="/professores">
+          <a className="tile"  title="Professores" href="/professor">
 
               <div className="tile-icon"><img src={imgProfessores}/></div>
-              <div className="tile-title title-ltr"><Link to="/professores">Professores</Link></div>
+              <div className="tile-title title-ltr"><Link to="/professor">Professores</Link></div>
           </a>
 
-          <a className="tile"  title="Projetos" href="/projetos">
+          <a className="tile"  title="Projetos" href="/projeto">
 
               <div className="tile-icon"><img src={imgProjetos}/></div>
-              <div className="tile-title title-ltr"><Link to="/projetos">Projetos</Link></div>
+              <div className="tile-title title-ltr"><Link to="/projeto">Projetos</Link></div>
           </a>
 
           <a className="tile"  title="Sobre" href="/sobre">

@@ -1,5 +1,7 @@
 import './Form.css';
 
+import { Link } from 'react-router-dom';
+
 import logo from '../imagens/logo.png';
 import imgAlunos from '../imagens/alunos.png';
 import imgProfessores from '../imagens/professores.png';
@@ -42,41 +44,44 @@ const FormYupLogin = () => {
               <img id="image" src={logo} />
           </div>
           <br></br>
-          
+
+          <div id="formulario">
           <label>
             Email*:<br></br>
             <Field type="text" name="email"
               onBlur={handleBlur}
               onChange={handleChange} />
-          </label><br></br>
+          </label>
           <ErrorMessage name="email" className="error" component="span" />
+          <br></br>
 
           <label>
             Senha*:<br></br>
             <Field type="password" name="senha"
               onBlur={handleBlur}
               onChange={handleChange} />
-          </label><br></br>
+          </label>
           <ErrorMessage name="senha" className="error" component="span" />
           <br></br>
           
-
-          <input type="submit" value="Login" disabled={isSubmitting} />
-          
+          <Link to="/home">
+            <input type="submit" value="Login" disabled={isSubmitting} />
+          </Link>
+          </div>
 
           <div className="App">
             
             <div id="container">
-              <a className="tile" title="CadastrarAluno" href="https://google.com/">
+              <a className="tile" title="CadastrarAluno" href="/cadastrar_aluno">
 
                 <div className="tile-icon"><img src={imgAlunos} /></div>
-                <div className="tile-title title-ltr"><span>Cadastrar Aluno</span></div>
+                <div className="tile-title title-ltr"><Link to="/cadastrar_aluno">Cadastrar Aluno</Link></div>
               </a>
 
-              <a className="tile" title="CadastrarProfessor" href="https://web.whatsapp.com/">
+              <a className="tile" title="CadastrarProfessor" href="/cadastrar_professor">
 
                 <div className="tile-icon"><img src={imgProfessores} /></div>
-                <div className="tile-title title-ltr"><span>Cadastrar Professor</span></div>
+                <div className="tile-title title-ltr"><Link to="/cadastrar_professor">Cadastrar Professor</Link></div>
               </a>
 
             </div>

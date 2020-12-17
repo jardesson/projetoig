@@ -1,5 +1,7 @@
 import './Form.css';
 
+import { Link } from 'react-router-dom';
+
 import React from 'react';
 import { Formik, ErrorMessage, Field } from 'formik';
 import * as Yup from 'yup';
@@ -57,8 +59,9 @@ const FormYupProjeto = () => {
             <ErrorMessage name="descricao" className="error" component="span" />
 
             <br></br>
-
-            <input type="submit" value="Cadastrar" disabled={isSubmitting} />
+            <Link to="/projeto">
+              <input type="submit" value="Cadastrar" disabled={isSubmitting} />
+            </Link>
           </div>
         </form>
       )}

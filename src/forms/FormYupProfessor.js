@@ -1,5 +1,7 @@
 import './Form.css';
 
+import { Link } from 'react-router-dom';
+import Home from '../Home';
 import React from 'react';
 import { Formik, ErrorMessage, Field } from 'formik';
 import * as Yup from 'yup';
@@ -53,17 +55,17 @@ const FormYupProfessor = () => {
               <Field type="text" name="name"
                 onBlur={handleBlur}
                 onChange={handleChange} />
-            </label><br></br>
+            </label>
             <ErrorMessage name="name" className="error" component="span" />
-
+            <br></br>
             <label>
               Matrícula*:<br></br>
               <Field type="text" name="matricula"
                 onBlur={handleBlur}
                 onChange={handleChange} />
-            </label><br></br>
+            </label>
             <ErrorMessage name="matricula" className="error" component="span" />
-
+            <br></br>
             
 
             <label>
@@ -71,19 +73,19 @@ const FormYupProfessor = () => {
               <Field type="text" name="formacao"
                 onBlur={handleBlur}
                 onChange={handleChange} />
-            </label><br></br>
+            </label>
             <ErrorMessage name="formacao" className="error" component="span" />
-
+            <br></br>
             <label>
               Área de atuação*:<br></br>
               <Field type="text" name="area"
                 onBlur={handleBlur}
                 onChange={handleChange} />
-            </label><br></br>
+            </label>
             <ErrorMessage name="area" className="error" component="span" />
             
-
             <br></br>
+
 
             <label>
               Email*:<br></br>
@@ -110,9 +112,15 @@ const FormYupProfessor = () => {
                 onChange={handleChange} />
             </label>
             <ErrorMessage name="senhaConfirmation" className="error" component="span" />
-            <br></br>
+            <br></br><br></br><br></br>
 
-            <input type="submit" value="Cadastrar" disabled={isSubmitting} />
+            <Link to="/home">
+              <input type="submit" value="Cadastrar" disabled={isSubmitting} />
+            </Link>
+            
+            <Link to="/init">
+              <button>Cancelar</button>
+            </Link>
           </div>
         </form>
       )}

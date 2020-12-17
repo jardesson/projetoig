@@ -1,5 +1,7 @@
 import './Form.css';
 
+import { Link } from 'react-router-dom';
+
 import React from 'react';
 import { Formik, ErrorMessage, Field } from 'formik';
 import * as Yup from 'yup';
@@ -104,13 +106,15 @@ const FormYupAluno = () => {
             <ErrorMessage name="senhaConfirmation" className="error" component="span" />
             <br></br>
 
-          
-
             <br></br><br></br>
 
-
-            <input type="submit" value="Cadastrar" disabled={isSubmitting} />
-            <button onClick={Home}>Cancelar</button>
+            <Link to="/home">
+              <input type="submit" value="Cadastrar" disabled={isSubmitting} />
+            </Link>
+            
+            <Link to="/init">
+              <button>Cancelar</button>
+            </Link>
           </div>
         </form>
 
