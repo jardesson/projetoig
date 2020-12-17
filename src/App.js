@@ -3,9 +3,11 @@ import React from 'react';
 import Sobre from './Sobre';
 import Home from './Home';
 
-import Aluno from './atores/Aluno';
-import Professor from './atores/Professor';
-import Projeto from './atores/Projeto';
+import Aluno from './views/Aluno';
+import Professor from './views/Professor';
+import Projeto from './views/Projeto';
+import ListAlunos from './views/ListAlunos';
+import ListProfessor from './views/ListProfessor';
 
 import FormYupAluno from './forms/FormYupAluno';
 import FormYupProfessor from './forms/FormYupProfessor';
@@ -14,12 +16,12 @@ import FormYupLogin from './forms/FormYupLogin';
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
+
 const App = () => (
 
     <Router>
         <Switch>
-
-            <Route path="/init">
+            <Route path="/login">
                 <FormYupLogin/>
             </Route>
 
@@ -39,12 +41,20 @@ const App = () => (
                 <Aluno />
             </Route>
 
+            <Route path="/visualizar_alunos">
+                <ListAlunos />
+            </Route>
+
             <Route path="/cadastrar_professor">
                 <FormYupProfessor />
             </Route>
 
             <Route path="/professor">
                 <Professor />
+            </Route>
+
+            <Route path="/visualizar_professores">
+                <ListProfessor />
             </Route>
 
             <Route path="/cadastrar_projeto">
